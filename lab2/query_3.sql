@@ -13,6 +13,6 @@ FROM applications a
     JOIN event e ON s.stream_id = e.stream_id
     JOIN eventtypes et ON e.event_type = et.type_id
 WHERE
-    a.applicant_id = 'ХА-12345'
+    a.is_current_application = TRUE
+    AND a.applicant_id = 'ХА-12345'
     AND e.subject_name = 'Фізика';
-
