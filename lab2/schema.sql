@@ -19,7 +19,7 @@ CREATE TABLE Department(
     department_name VARCHAR(100) NOT NULL,
     faculty_id INT,
     FOREIGN KEY (faculty_id) REFERENCES Faculty(faculty_id)
-                       ON DELETE SET NULL
+                       ON DELETE RESTRICT
 );
 
 CREATE TABLE EventTypes(
@@ -37,7 +37,7 @@ CREATE TABLE "Group"(
     group_name VARCHAR(10) NOT NULL,
     stream_id INT,
     FOREIGN KEY (stream_id) REFERENCES Stream(stream_id)
-                  ON DELETE SET NULL
+                  ON DELETE RESTRICT
 );
 
 CREATE TABLE Event(
@@ -52,7 +52,7 @@ CREATE TABLE Event(
     FOREIGN KEY (stream_id) REFERENCES Stream(stream_id)
                   ON DELETE CASCADE,
     FOREIGN KEY (event_type) REFERENCES EventTypes(type_id)
-                  ON DELETE SET NULL
+                  ON DELETE RESTRICT
 );
 
 CREATE TABLE Applicants(
@@ -76,9 +76,9 @@ CREATE TABLE Applications (
     FOREIGN KEY (applicant_id) REFERENCES Applicants(applicant_id)
                   ON DELETE CASCADE,
     FOREIGN KEY (department_id) REFERENCES Department(department_id)
-                  ON DELETE SET NULL,
+                  ON DELETE RESTRICT,
     FOREIGN KEY (group_id) REFERENCES "Group"(group_id)
-                  ON DELETE SET NULL
+                  ON DELETE RESTRICT
 );
 
 CREATE TABLE ExamResults (

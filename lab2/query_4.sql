@@ -11,4 +11,4 @@ FROM
 JOIN stream s ON g.stream_id = s.stream_id
 JOIN event e ON s.stream_id = e.stream_id
 JOIN eventtypes es ON e.event_type = es.type_id
-WHERE type_name = 'Екзамен' AND group_name = 'КН-101';
+WHERE type_name = 'Іспит' AND group_name = 'КН-101';

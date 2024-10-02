@@ -3,7 +3,7 @@
 SELECT
     a.applicant_id,
     ev.event_name,
-    e.exam_mark
+    COALESCE(e.appeal_mark, e.exam_mark) as final_mark
 FROM applications a
     JOIN examresults e ON a.application_id = e.application_id
     JOIN event ev ON e.event_id = ev.event_id
