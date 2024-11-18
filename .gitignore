@@ -1,3 +1,4 @@
 .psql_history
 .idea
 *__pycache__*
+lab4/postgres/data/*
