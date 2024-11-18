@@ -29,10 +29,18 @@ services:
     volumes:
       - ./postgres/data:/var/lib/postgresql/data
       - ./postgres/schema.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./postgres/data.sql:/docker-entrypoint-initdb.d/5.sql
-      - ./postgres/updates_deletes.sql:/docker-entrypoint-initdb.d/2.sql
-      - ./postgres/scope_routines.sql:/docker-entrypoint-initdb.d/4.sql
-      - ./postgres/queries_triggers.sql:/docker-entrypoint-initdb.d/3.sql
+      - ./postgres/table_cache/applicant_updates_triggers.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./postgres/table_cache/application_updates_triggers.sql:/docker-entrypoint-initdb.d/3.sql
+      - ./postgres/table_cache/department_updates_triggers.sql:/docker-entrypoint-initdb.d/4.sql
+      - ./postgres/table_cache/event_types_updates_triggers.sql:/docker-entrypoint-initdb.d/5.sql
+      - ./postgres/table_cache/event_updates_triggers.sql:/docker-entrypoint-initdb.d/6.sql
+      - ./postgres/table_cache/exam_results_updates_triggers.sql:/docker-entrypoint-initdb.d/7.sql
+      - ./postgres/table_cache/faculty_updates_triggers.sql:/docker-entrypoint-initdb.d/8.sql
+      - ./postgres/table_cache/group_updates_triggers.sql:/docker-entrypoint-initdb.d/9.sql
+      - ./postgres/queries_triggers.sql:/docker-entrypoint-initdb.d/91.sql
+      - ./postgres/scope_routines.sql:/docker-entrypoint-initdb.d/92.sql
+      - ./postgres/data.sql:/docker-entrypoint-initdb.d/93.sql
+      - ./postgres/table_cache/table_deletes.sql:/docker-entrypoint-initdb.d/94.sql
       - ./postgres/showcase_select.sql:/showcase_select.sql
       
     depends_on:
