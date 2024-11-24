@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Applicant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Applicant</h1>
+        <form action="/edit_applicant" method="POST">
+            <input type="hidden" name="applicant_id" value="{{ applicant.applicant_id }}">
+
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="{{ applicant.first_name }}" required>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="{{ applicant.last_name }}" required>
+
+            <label for="middle_name">Middle Name:</label>
+            <input type="text" id="middle_name" name="middle_name" value="{{ applicant.middle_name }}">
+
+            <label for="id_series">ID Series:</label>
+            <input type="text" id="id_series" name="id_series" value="{{ applicant.id_series }}" required>
+
+            <label for="graduated_institution_name">Graduated Institution Name:</label>
+            <input type="text" id="graduated_institution_name" name="graduated_institution_name" value="{{ applicant.graduated_institution_name }}">
+
+            <label for="graduated_institution_city">Graduated Institution City:</label>
+            <input type="text" id="graduated_institution_city" name="graduated_institution_city" value="{{ applicant.graduated_institution_city }}">
+
+            <label for="graduated_date">Graduated Date:</label>
+            <input type="date" id="graduated_date" name="graduated_date" value="{{ applicant.graduated_date }}">
+
+            <label for="has_medal">Has Medal:</label>
+            <select id="has_medal" name="has_medal">
+                <option value="True" {% if applicant.has_medal %}selected{% endif %}>Yes</option>
+                <option value="False" {% if not applicant.has_medal %}selected{% endif %}>No</option>
+            </select>
+
+            <button type="submit">Update Applicant</button>
+        </form>
+
+        <div class="back-link">
+            <a href="/applicants">Back to Applicants</a>
+        </div>
+    </div>
+</body>
+</html>

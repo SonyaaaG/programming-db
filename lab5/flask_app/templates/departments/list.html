@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Departments</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Departments</h1>
+
+        <h2>Current Departments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Faculty</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department.department_id }}</td>
+                    <td>{{ department.department_name }}</td>
+                    <td>{{ department.faculty_id }}</td>
+                    <td>
+                        <form action="/delete_department" method="POST" style="display:inline;">
+                            <input type="hidden" name="department_id" value="{{ department.department_id }}">
+                            <button type="submit" class="button-act">Delete</button>
+                        </form>
+                        <form action="/edit_department" method="GET" style="display:inline;">
+                            <input type="hidden" name="department_id" value="{{ department.department_id }}">
+                            <button type="submit" class="button-act">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/add_department" class="button-nav">Add Department</a>
+            <a href="/tables_actions" class="button-nav">Back to Table Actions</a>
+        </div>
+    </div>
+</body>
+</html>

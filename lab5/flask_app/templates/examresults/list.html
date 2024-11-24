@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Exam results</h1>
+
+        <h2>Current Exam results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Applicant ID</th>
+                    <th>Event ID</th>
+                    <th>Event Name</th>
+                    <th>Exam Mark</th>
+                    <th>Appeal Status</th>
+                    <th>Appeal Mark</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in examresults %}
+                <tr>
+                    <td>{{ result[0] }}</td> <!-- Application ID -->
+                    <td>{{ result[1] }}</td> <!-- Applicant ID -->
+                    <td>{{ result[2] }}</td> <!-- Event ID -->
+                    <td>{{ result[3] }}</td> <!-- Event Name -->
+                    <td>{{ result[4] }}</td> <!-- Exam Mark -->
+                    <td>{{ 'Yes' if result[5] else 'No' }}</td> <!-- Appeal Status -->
+                    <td>{{ result[6] }}</td> <!-- Appeal Mark -->
+                    <td>
+                        <form action="/delete_examresult" method="POST" style="display:inline;">
+                            <input type="hidden" name="application_id" value="{{ result[0] }}">
+                            <input type="hidden" name="event_id" value="{{ result[2] }}">
+                            <button type="submit" class="button-act">Delete</button>
+                        </form>
+                        <form action="/edit_examresult" method="GET" style="display:inline;">
+                            <input type="hidden" name="application_id" value="{{ result[0] }}">
+                            <input type="hidden" name="event_id" value="{{ result[2] }}">
+                            <button type="submit" class="button-act">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation-buttons">
+            <a href="/add_examresult" class="button-nav">Add Exam Result</a>
+            <a href="/tables_actions" class="button-nav">Back to Table Actions</a>
+        </div>
+    </div>
+</body>
+</html>

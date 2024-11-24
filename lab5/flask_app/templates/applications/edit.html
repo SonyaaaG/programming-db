@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Application</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Application</h1>
+        <form action="/edit_application" method="POST">
+            <input type="hidden" name="application_id" value="{{ application.application_id }}">
+
+            <label for="applicant_id">Applicant ID:</label>
+            <select id="applicant_id" name="applicant_id" class="form-dropdown" required>
+                {% for applicant in applicants %}
+                <option value="{{ applicant.applicant_id }}" {% if applicant.applicant_id == application.applicant_id %}selected{% endif %}>
+                    {{ applicant.applicant_id }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="department_id">Department ID:</label>
+            <select id="department_id" name="department_id" class="form-dropdown" required>
+                {% for department in departments %}
+                <option value="{{ department.department_id }}" {% if department.department_id == application.department_id %}selected{% endif %}>
+                    {{ department.department_name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="group_id">Group ID:</label>
+            <select id="group_id" name="group_id" class="form-dropdown" required>
+                {% for group in groups %}
+                <option value="{{ group.group_id }}" {% if group.group_id == application.group_id %}selected{% endif %}>
+                    {{ group.group_name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="is_current_application">Is Current Application:</label>
+            <select id="is_current_application" name="is_current_application">
+                <option value="True" {% if application.is_current_application %}selected{% endif %}>Yes</option>
+                <option value="False" {% if not application.is_current_application %}selected{% endif %}>No</option>
+            </select>
+
+            <button type="submit">Update Application</button>
+        </form>
+
+        <div class="back-link">
+            <a href="/applications">Back to Applications</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.form-dropdown').select2({
+                placeholder: "Start typing to search...",
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>

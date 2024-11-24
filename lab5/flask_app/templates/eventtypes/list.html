@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Event Types</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Event Types</h1>
+
+        <h2>Current Event Types</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Event Type ID</th>
+                    <th>Event Type Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for eventtype in eventtypes %}
+                <tr>
+                    <td>{{ eventtype.type_id }}</td>
+                    <td>{{ eventtype.type_name }}</td>
+                    <td>
+                        <form action="/delete_eventtype" method="POST" style="display:inline;">
+                            <input type="hidden" name="type_id" value="{{ eventtype.type_id }}">
+                            <button type="submit" class="button-act">Delete</button>
+                        </form>
+                        <form action="/edit_eventtype" method="GET" style="display:inline;">
+                            <input type="hidden" name="type_id" value="{{ eventtype.type_id }}">
+                            <button type="submit" class="button-act">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/add_eventtype" class="button-nav">Add Event Type</a>
+            <a href="/tables_actions" class="button-nav">Back to Table Actions</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Applicant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="add-container">
+    <h1>Add Applicant</h1>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    <div>
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <form action="/add_applicant" method="POST" class="form">
+        <label for="applicant_id">Applicant ID:</label>
+        <input type="text" id="applicant_id" name="applicant_id" placeholder="e.g., A12345" required>
+
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" placeholder="e.g., John" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" placeholder="e.g., Doe" required>
+
+        <label for="middle_name">Middle Name:</label>
+        <input type="text" id="middle_name" name="middle_name" placeholder="e.g., James">
+
+        <label for="id_series">ID Series:</label>
+        <input type="text" id="id_series" name="id_series" placeholder="e.g., AB123456" required>
+
+        <label for="graduated_institution_name">Graduated Institution Name:</label>
+        <input type="text" id="graduated_institution_name" name="graduated_institution_name" placeholder="e.g., University Name">
+
+        <label for="graduated_institution_city">Graduated Institution City:</label>
+        <input type="text" id="graduated_institution_city" name="graduated_institution_city" placeholder="e.g., City Name">
+
+        <label for="graduated_date">Graduated Date:</label>
+        <input type="date" id="graduated_date" name="graduated_date">
+
+        <label for="has_medal">Has Medal:</label>
+        <select id="has_medal" name="has_medal">
+            <option value="True">Yes</option>
+            <option value="False">No</option>
+        </select>
+
+            <div class="navigation-buttons">
+                <a href="/applicants" class="button-nav">Back</a>
+                <button type="submit" class="button">Add Applicant</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

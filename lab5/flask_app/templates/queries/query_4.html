@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Exam Means</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Faculty Exam Mean Marks</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Faculty Name</th>
+                    <th>Subject Name</th>
+                    <th>Average Mark</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in faculty_exam_data %}
+                    <tr>
+                        <td>{{ row.faculty_name }}</td>
+                        <td>{{ row.subject_name }}</td>
+                        <td>{{ row.mean_mark | round(2) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/queries" class="button-nav">Back</a>
+        </div>
+    </div>
+</body>
+</html>

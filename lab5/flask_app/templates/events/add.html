@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Event</h1>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/add_event" method="POST">
+            <label for="event_name">Event Name:</label>
+            <input type="text" id="event_name" name="event_name" required maxlength="30">
+
+            <label for="subject_name">Subject Name:</label>
+            <input type="text" id="subject_name" name="subject_name" required maxlength="20">
+
+            <label for="stream_id">Stream:</label>
+            <select id="stream_id" name="stream_id">
+                <option value="">-- Select Stream --</option>
+                {% for stream in streams %}
+                <option value="{{ stream.stream_id }}">{{ stream.stream_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="event_start_datetime">Event Start Date & Time:</label>
+            <input type="datetime-local" id="event_start_datetime" name="event_start_datetime" required>
+
+            <label for="event_audience">Event Audience:</label>
+            <input type="text" id="event_audience" name="event_audience" required maxlength="20">
+
+            <label for="event_duration">Event Duration (in minutes):</label>
+            <input type="number" id="event_duration" name="event_duration" required min="1">
+
+            <label for="event_type">Event Type:</label>
+            <select id="event_type" name="event_type">
+                <option value="">-- Select Event Type --</option>
+                {% for event_type in event_types %}
+                <option value="{{ event_type.type_id }}">{{ event_type.type_name }}</option>
+                {% endfor %}
+            </select>
+
+            <div class="navigation-buttons">
+                <a href="/events" class="button-nav">Back</a>
+                <button type="submit" class="button">Add Event</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

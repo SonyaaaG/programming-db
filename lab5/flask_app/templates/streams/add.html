@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Stream</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Stream</h1>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/add_stream" method="POST">
+            <label for="stream_name">Stream Name:</label>
+            <input type="text" id="stream_name" name="stream_name" placeholder="e.g., Science, Arts" required maxlength="20">
+
+            <div class="navigation-buttons">
+                <a href="/streams" class="button-nav">Back</a>
+                <button type="submit" class="button">Add Stream</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
