@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Department</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Department</h1>
+        <form action="/edit_department" method="POST">
+            <input type="hidden" name="department_id" value="{{ department.department_id }}">
+
+            <label for="department_name">Department Name:</label>
+            <input type="text" id="department_name" name="department_name" value="{{ department.department_name }}" required maxlength="100">
+
+            <label for="faculty_id">Faculty:</label>
+            <select id="faculty_id" name="faculty_id" class="dropdown-filter" required>
+                {% for faculty in faculties %}
+                <option value="{{ faculty.faculty_id }}" {% if faculty.faculty_id == department.faculty_id %}selected{% endif %}>
+                    {{ faculty.faculty_name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <div class="navigation-buttons">
+                <a href="/departments" class="button-nav">Back</a>
+                <button type="submit" class="button">Update Department</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-filter').select2({
+                placeholder: "Type to search...",
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>

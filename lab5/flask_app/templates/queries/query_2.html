@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Exam Results</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Applicant Exam Results</h1>
+
+        <form method="POST" action="/query_2">
+            <label for="applicant_id">Select Applicant ID:</label>
+            <select id="applicant_id" name="applicant_id">
+                {% for applicant_id in applicant_ids %}
+                    <option value="{{ applicant_id[0] }}" {% if applicant_id[0] == selected_applicant_id %}selected{% endif %}>
+                        {{ applicant_id[0] }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Show Results</button>
+        </form>
+
+        <h2>Exam Results for Applicant ID: {{ selected_applicant_id }}</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Final Mark</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in exam_results %}
+                    <tr>
+                        <td>{{ result.event_name }}</td>
+                        <td>{{ result.final_mark }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/queries" class="button-nav">Back</a>
+        </div>
+    </div>
+</body>
+</html>

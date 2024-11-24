@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Stream</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Stream</h1>
+        <form action="/edit_stream" method="POST">
+            <input type="hidden" name="stream_id" value="{{ stream.stream_id }}">
+
+            <label for="stream_name">Stream Name:</label>
+            <input type="text" id="stream_name" name="stream_name" value="{{ stream.stream_name }}" required maxlength="20">
+
+            <div class="navigation-buttons">
+                <a href="/streams" class="button-nav">Back</a>
+                <button type="submit" class="button">Update Stream</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

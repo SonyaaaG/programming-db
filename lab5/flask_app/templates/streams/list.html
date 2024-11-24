@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Streams</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Streams</h1>
+
+        <h2>Current Streams</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stream ID</th>
+                    <th>Stream Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stream in streams %}
+                <tr>
+                    <td>{{ stream.stream_id }}</td>
+                    <td>{{ stream.stream_name }}</td>
+                    <td>
+                        <form action="/delete_stream" method="POST" style="display:inline;">
+                            <input type="hidden" name="stream_id" value="{{ stream.stream_id }}">
+                            <button type="submit" class="button-act">Delete</button>
+                        </form>
+                        <form action="/edit_stream" method="GET" style="display:inline;">
+                            <input type="hidden" name="stream_id" value="{{ stream.stream_id }}">
+                            <button type="submit" class="button-act">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/add_stream" class="button-nav">Add Stream</a>
+            <a href="/tables_actions" class="button-nav">Back to Table Actions</a>
+        </div>
+    </div>
+</body>
+</html>

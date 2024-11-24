@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Application</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" />
+</head>
+<body>
+    <div class="add-container">
+        <h1>Add Application</h1>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form action="/add_application" method="POST" class="form">
+            <label for="applicant_id">Applicant ID:</label>
+            <select id="applicant_id" name="applicant_id" class="form-dropdown" required>
+                <option value="" disabled selected>Select Applicant</option>
+                {% for applicant in applicants %}
+                <option value="{{ applicant.applicant_id }}">{{ applicant.applicant_id }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="department_id">Department ID:</label>
+            <select id="department_id" name="department_id" class="form-dropdown" required>
+                <option value="" disabled selected>Select Department</option>
+                {% for department in departments %}
+                <option value="{{ department.department_id }}">{{ department.department_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="group_id">Group ID:</label>
+            <select id="group_id" name="group_id" class="form-dropdown" required>
+                <option value="" disabled selected>Select Group</option>
+                {% for group in groups %}
+                <option value="{{ group.group_id }}">{{ group.group_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="is_current_application">Is Current Application:</label>
+            <select id="is_current_application" name="is_current_application">
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+
+            <div class="navigation-buttons">
+                <a href="/applications" class="button-nav">Back</a>
+                <button type="submit" class="button">Add Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.form-dropdown').select2({
+                placeholder: "Start typing to search...",
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>

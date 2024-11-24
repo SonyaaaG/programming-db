@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Faculty</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Faculty</h1>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/add_faculty" method="POST">
+            <label for="faculty_name">Faculty Name:</label>
+            <input type="text" id="faculty_name" name="faculty_name" placeholder="e.g., Engineering (max length 50)" required maxlength="50">
+
+            <label for="openings_amount">Openings Amount:</label>
+            <input type="number" id="openings_amount" name="openings_amount" placeholder="e.g., 50(min 1)" required min="1">
+
+            <div class="navigation-buttons">
+                <a href="/faculties" class="button-nav">Back</a>
+                <button type="submit" class="button">Add Faculty</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event Type</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Event Type</h1>
+        <form action="/edit_eventtype" method="POST">
+            <input type="hidden" name="type_id" value="{{ eventtype.type_id }}">
+
+            <label for="type_name">Event Type Name:</label>
+            <input type="text" id="type_name" name="type_name" value="{{ eventtype.type_name }}" required maxlength="20">
+
+            <div class="navigation-buttons">
+                <a href="/eventtypes" class="button-nav">Back</a>
+                <button type="submit" class="button">Update Event Type</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

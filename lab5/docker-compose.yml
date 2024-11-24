@@ -1,0 +1,25 @@
+services:
+
+  db:
+    image: postgres:15
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+      
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./postgres/scope_routines.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./postgres/data.sql:/docker-entrypoint-initdb.d/3.sql
+
+  python_app:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+

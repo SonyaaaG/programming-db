@@ -1,0 +1,303 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+}
+
+.container {
+    margin: 20px auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 60%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse table borders for a cleaner look */
+    margin: 20px 0; /* Add some space around the table */
+    table-layout: fixed; /* Allow the table to adjust column widths based on content */
+}
+
+th, td {
+    padding: 12px 15px; /* Add padding for spacing */
+    border: 1px solid #ddd; /* Light border for clarity */
+    text-align: center; /* Center-align text in cells */
+}
+
+th {
+    background-color: #f4f4f4; /* Light background for table headers */
+    font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Add alternating row colors for better readability */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight rows on hover */
+}
+
+/* Styling for the form and buttons */
+form {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.button {
+    display: inline-block;
+    width: 200px;
+    padding: 15px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.button-act {
+    display: inline-block;
+    width: 100px;
+    padding: 15px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #c4093f;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #45a049;
+    transform: translateY(-3px);
+}
+
+.form-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: auto;
+        }
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-container label {
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.form-container button {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #45a049;
+}
+
+.form-container .back-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-container .back-link a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.form-container .back-link a:hover {
+    color: #45a049;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.button-nav {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.button-nav:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.add-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.add-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-container label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #444;
+}
+
+
+.add-container input,
+.add-container select,
+.add-container button {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-container input:focus,
+.add-container select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.add-container button {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+    border: none;
+}
+
+.add-container button:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+}
+
+.add-container .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.add-container .button-nav {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.add-container .button-nav:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.add-container .back-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.add-container .back-link a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.add-container .back-link a:hover {
+    color: #0056b3;
+}
+
+select {
+    width: 300px;
+    max-width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.form-dropdown {
+    width: 300px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Faculties</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Faculties</h1>
+
+        <h2>Current Faculties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Faculty ID</th>
+                    <th>Faculty Name</th>
+                    <th>Openings Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for faculty in faculties %}
+                <tr>
+                    <td>{{ faculty.faculty_id }}</td>
+                    <td>{{ faculty.faculty_name }}</td>
+                    <td>{{ faculty.openings_amount }}</td>
+                    <td>
+                        <form action="/delete_faculty" method="POST" style="display:inline;">
+                            <input type="hidden" name="faculty_id" value="{{ faculty.faculty_id }}">
+                            <button type="submit" class="button-act">Delete</button>
+                        </form>
+                        <form action="/edit_faculty" method="GET" style="display:inline;">
+                            <input type="hidden" name="faculty_id" value="{{ faculty.faculty_id }}">
+                            <button type="submit" class="button-act">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/add_faculty" class="button-nav">Add Faculty</a>
+            <a href="/tables_actions" class="button-nav">Back to Table Actions</a>
+        </div>
+    </div>
+</body>
+</html>

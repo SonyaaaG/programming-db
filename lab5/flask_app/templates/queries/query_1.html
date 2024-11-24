@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants to Faculty</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Applicants to Faculty</h1>
+
+        <form action="/query_1" method="POST">
+            <label for="faculty_name">Select Faculty:</label>
+            <select id="faculty_name" name="faculty_name" required>
+                {% for faculty in faculties %}
+                    <option value="{{ faculty.faculty_name }}" {% if faculty.faculty_name == selected_faculty %}selected{% endif %}>
+                        {{ faculty.faculty_name }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="button">Show Applicants</button>
+        </form>
+
+        <h2>Applicants for {{ selected_faculty }}</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Middle Name</th>
+                    <th>ID Series</th>
+                    <th>Graduated Institution</th>
+                    <th>Graduated City</th>
+                    <th>Graduated Date</th>
+                    <th>Has Medal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for applicant in applicants %}
+                    <tr>
+                        <td>{{ applicant.applicant_id }}</td>
+                        <td>{{ applicant.first_name }}</td>
+                        <td>{{ applicant.last_name }}</td>
+                        <td>{{ applicant.middle_name or 'N/A' }}</td>
+                        <td>{{ applicant.id_series }}</td>
+                        <td>{{ applicant.graduated_institution_name or 'N/A' }}</td>
+                        <td>{{ applicant.graduated_institution_city or 'N/A' }}</td>
+                        <td>{{ applicant.graduated_date or 'N/A' }}</td>
+                        <td>{{ 'Yes' if applicant.has_medal else 'No' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/queries" class="button-nav">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

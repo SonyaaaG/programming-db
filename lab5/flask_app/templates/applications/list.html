@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Applications</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Applications</h1>
+
+        <h2>Current Applications</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Applicant ID</th>
+                    <th>Department</th>
+                    <th>Group</th>
+                    <th>Current Application</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                <tr>
+                    <td>{{ application.application_id }}</td>
+                    <td>{{ application.applicant_id }}</td>
+                    <td>{{ application.department_id }}</td>
+                    <td>{{ application.group_id }}</td>
+                    <td>{{ 'Yes' if application.is_current_application else 'No' }}</td>
+                    <td>
+                        <form action="/delete_application" method="POST" style="display:inline;">
+                            <input type="hidden" name="application_id" value="{{ application.application_id }}">
+                            <button type="submit" class="button-act">Delete</button>
+                        </form>
+                        <form action="/edit_application" method="GET" style="display:inline;">
+                            <input type="hidden" name="application_id" value="{{ application.application_id }}">
+                            <button type="submit" class="button-act">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/add_application" class="button-nav">Add Application</a>
+            <a href="/tables_actions" class="button-nav">Back to Table Actions</a>
+        </div>
+    </div>
+</body>
+</html>

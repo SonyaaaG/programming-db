@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Applicants</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Applicants</h1>
+
+        <h2>Current Applicants</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Middle Name</th>
+                    <th>ID Series</th>
+                    <th>Graduated Institution</th>
+                    <th>Graduated City</th>
+                    <th>Graduated Date</th>
+                    <th>Has Medal</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for applicant in applicants %}
+                <tr>
+                    <td>{{ applicant.applicant_id }}</td>
+                    <td>{{ applicant.first_name }}</td>
+                    <td>{{ applicant.last_name }}</td>
+                    <td>{{ applicant.middle_name or 'N/A' }}</td>
+                    <td>{{ applicant.id_series }}</td>
+                    <td>{{ applicant.graduated_institution_name or 'N/A' }}</td>
+                    <td>{{ applicant.graduated_institution_city or 'N/A' }}</td>
+                    <td>{{ applicant.graduated_date or 'N/A' }}</td>
+                    <td>{{ 'Yes' if applicant.has_medal else 'No' }}</td>
+                    <td>
+                        <form action="/delete_applicant" method="POST" style="display:inline;">
+                            <input type="hidden" name="applicant_id" value="{{ applicant.applicant_id }}">
+                            <button type="submit" class="button-act">Delete</button>
+                        </form>
+                        <form action="/edit_applicant" method="GET" style="display:inline;">
+                            <input type="hidden" name="applicant_id" value="{{ applicant.applicant_id }}">
+                            <button type="submit" class="button-act">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/add_applicant" class="button-nav">Add Applicant</a>
+            <a href="/tables_actions" class="button-nav">Back to Table Actions</a>
+        </div>
+    </div>
+</body>
+</html>

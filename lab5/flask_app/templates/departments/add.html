@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Department</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Department</h1>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/add_department" method="POST">
+            <label for="department_name">Department Name:</label>
+            <input type="text" id="department_name" name="department_name" placeholder="e.g., Computer Science" required maxlength="100">
+
+            <label for="faculty_id">Faculty:</label>
+            <select id="faculty_id" name="faculty_id" class="dropdown-filter" required>
+                <option value="" disabled selected>Select Faculty</option>
+                {% for faculty in faculties %}
+                <option value="{{ faculty.faculty_id }}">{{ faculty.faculty_name }}</option>
+                {% endfor %}
+            </select>
+
+            <div class="navigation-buttons">
+                <a href="/departments" class="button-nav">Back</a>
+                <button type="submit" class="button">Add Department</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-filter').select2({
+                placeholder: "Type to search...",
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Exam Events</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Group Exam Events</h1>
+
+        <form method="POST" action="/query_3">
+            <label for="group_name">Select Group Name:</label>
+            <select id="group_name" name="group_name">
+                {% for group_name in group_names %}
+                    <option value="{{ group_name[0] }}" {% if group_name[0] == selected_group_name %}selected{% endif %}>
+                        {{ group_name[0] }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Show Events</button>
+        </form>
+
+        <h2>Exam Events for Group: {{ selected_group_name }}</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Group Name</th>
+                    <th>Event Type</th>
+                    <th>Subject Name</th>
+                    <th>Event Start</th>
+                    <th>Event Audience</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in exam_events %}
+                    <tr>
+                        <td>{{ event.group_name }}</td>
+                        <td>{{ event.event_type }}</td>
+                        <td>{{ event.subject_name }}</td>
+                        <td>{{ event.event_start_datetime }}</td>
+                        <td>{{ event.event_audience }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation-buttons">
+            <a href="/queries" class="button-nav">Back</a>
+        </div>
+    </div>
+</body>
+</html>
